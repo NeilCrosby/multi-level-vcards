@@ -68,8 +68,20 @@ class VCard {
 		'technorati' => 'technorati.com',
 		'mybloglog' => 'mybloglog.com',
 		'lastfm' => 'last.fm',
-		//'upcoming' => 'upcoming.yahoo.com',
+		'upcoming' => 'upcoming.yahoo.com',
 		'geocaching' => 'geocaching.com',
+		'etsy' => 'etsy.com',
+		'threadless' => 'threadless.com',
+		'stumbleupon' => 'stumbleupon.com',
+		'xbox' => 'xbox.com',
+		'pownce' => 'pownce.com',
+		'youtube' => 'youtube.com',
+		'digg' => 'digg.com',
+		'amazon' => 'amazon.co.uk',
+		'github' => 'github.com',
+		'calendaraboutnothing' => 'calendaraboutnothing.com',
+		'threesixtyvoice' => '360voice.com',
+		'lighthouseapp' => 'lighthouseapp.com',
 	);
     private $sFilename = '';
 

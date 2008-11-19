@@ -236,6 +236,45 @@ $hCard = new hCardWithLevels(
 		ul.profiles li.facebook {
 			background-position: 0 -240px;
 		}
+		ul.profiles li.etsy {
+			background-position: 0 -256px;
+		}
+		ul.profiles li.threadless {
+			background-position: 0 -272px;
+		}
+		ul.profiles li.upcoming {
+			background-position: 0 -288px;
+		}
+		ul.profiles li.stumbleupon {
+			background-position: 0 -304px;
+		}
+		ul.profiles li.xbox {
+			background-position: 0 -320px;
+		}
+		ul.profiles li.pownce {
+			background-position: 0 -336px;
+		}
+		ul.profiles li.youtube {
+			background-position: 0 -352px;
+		}
+		ul.profiles li.digg {
+			background-position: 0 -368px;
+		}
+		ul.profiles li.amazon {
+			background-position: 0 -384px;
+		}
+		ul.profiles li.github {
+			background-position: 0 -400px;
+		}
+		ul.profiles li.calendaraboutnothing {
+			background-position: 0 -416px;
+		}
+		ul.profiles li.threesixtyvoice {
+			background-position: 0 -432px;
+		}
+		ul.profiles li.lighthouseapp {
+			background-position: 0 -448px;
+		}
 		
 		.mod {
 			overflow: hidden;
