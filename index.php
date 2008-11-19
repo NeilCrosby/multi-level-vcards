@@ -81,22 +81,22 @@ $hCard = new hCardWithLevels(
 <html lang='en'>
   <head>
     <title>Neil Crosby's vCard</title>
-	<link rel="stylesheet" type="text/css" href="reset-fonts-grids-min.css">
+    <link rel="stylesheet" type="text/css" href="reset-fonts-grids-min.css">
     <style type='text/css'>
-		h1 {
-			font-size: 2em;
-			font-weight: bold;
-		}
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
 
-		h2 {
-			font-size: 1.5em;
-			font-weight: bold;
-			margin: 0.83em 0;
-		}
-		
-		p {
-			margin-bottom: 1em;
-		}
+        h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0.83em 0;
+        }
+        
+        p {
+            margin-bottom: 1em;
+        }
 
         dl {
             overflow: hidden;
@@ -112,7 +112,7 @@ $hCard = new hCardWithLevels(
             float:left;
             margin-left: 0;
             padding-left: 0;
-			width: 30em;
+            width: 30em;
         }
         
         .cta {
@@ -136,221 +136,221 @@ $hCard = new hCardWithLevels(
             background: #aa0000;
         }
 
-		table td {
-			padding: 1px;
-			vertical-align: top;
-		}
-		
-		table thead {
-			display: none;
-		}
-		
-		table th {
-			text-align: right;
-			font-weight: bold;
-			padding: 1px;
-			vertical-align: top;
-		}
+        table td {
+            padding: 1px;
+            vertical-align: top;
+        }
+        
+        table thead {
+            display: none;
+        }
+        
+        table th {
+            text-align: right;
+            font-weight: bold;
+            padding: 1px;
+            vertical-align: top;
+        }
 
-		table th.last {
-			text-align: left;
-		}
+        table th.last {
+            text-align: left;
+        }
 
-		.adr p {
-			margin: 0;
-		}
-		
-		#hd {
-			background: #eee;
-			padding: 0.5em;
-		}
+        .adr p {
+            margin: 0;
+        }
+        
+        #hd {
+            background: #eee;
+            padding: 0.5em;
+        }
 
-		ul.profiles {
-			overflow: hidden;
-		}
+        ul.profiles {
+            overflow: hidden;
+        }
 
-		ul.profiles li {
-			list-style-type: disc;
-			clear: both;
-			padding: 0;
-		}
+        ul.profiles li {
+            list-style-type: disc;
+            clear: both;
+            padding: 0;
+        }
 
-		ul.profiles li.known {
-			background: url(favicons.png);
-			width: 16px;
-			height: 16px;
-			text-indent: -9999em;
-			list-style-type: none;
-			float: left;
-			clear:none;
-			margin: 0.25em;
-		}
+        ul.profiles li.known {
+            background: url(favicons.png);
+            width: 16px;
+            height: 16px;
+            text-indent: -9999em;
+            list-style-type: none;
+            float: left;
+            clear:none;
+            margin: 0.25em;
+        }
 
-		ul.profiles li.known a {
-			display: block;
-			width: 16px;
-			height: 16px;
-		}
+        ul.profiles li.known a {
+            display: block;
+            width: 16px;
+            height: 16px;
+        }
 
-		ul.profiles li.brightkite {
-			background-position: 0 -16px;
-		}
-		ul.profiles li.geocaching {
-			background-position: 0 -32px;
-		}
-		ul.profiles li.flickr {
-			background-position: 0 -48px;
-		}
-		ul.profiles li.lovefilm {
-			background-position: 0 -64px;
-		}
-		ul.profiles li.thetenwordreview {
-			background-position: 0 -80px;
-		}
-		ul.profiles li.slideshare {
-			background-position: 0 -96px;
-		}
-		ul.profiles li.twitter {
-			background-position: 0 -112px;
-		}
-		ul.profiles li.linkedin {
-			background-position: 0 -128px;
-		}
-		ul.profiles li.lastfm {
-			background-position: 0 -144px;
-		}
-		ul.profiles li.technorati {
-			background-position: 0 -160px;
-		}
-		ul.profiles li.mybloglog {
-			background-position: 0 -176px;
-		}
-		ul.profiles li.pixish {
-			background-position: 0 -192px;
-		}
-		ul.profiles li.wikipedia {
-			background-position: 0 -208px;
-		}
-		ul.profiles li.delicious {
-			background-position: 0 -224px;
-		}
-		ul.profiles li.facebook {
-			background-position: 0 -240px;
-		}
-		ul.profiles li.etsy {
-			background-position: 0 -256px;
-		}
-		ul.profiles li.threadless {
-			background-position: 0 -272px;
-		}
-		ul.profiles li.upcoming {
-			background-position: 0 -288px;
-		}
-		ul.profiles li.stumbleupon {
-			background-position: 0 -304px;
-		}
-		ul.profiles li.xbox {
-			background-position: 0 -320px;
-		}
-		ul.profiles li.pownce {
-			background-position: 0 -336px;
-		}
-		ul.profiles li.youtube {
-			background-position: 0 -352px;
-		}
-		ul.profiles li.digg {
-			background-position: 0 -368px;
-		}
-		ul.profiles li.amazon {
-			background-position: 0 -384px;
-		}
-		ul.profiles li.github {
-			background-position: 0 -400px;
-		}
-		ul.profiles li.calendaraboutnothing {
-			background-position: 0 -416px;
-		}
-		ul.profiles li.threesixtyvoice {
-			background-position: 0 -432px;
-		}
-		ul.profiles li.lighthouseapp {
-			background-position: 0 -448px;
-		}
-		
-		.mod {
-			overflow: hidden;
-		}
-		
-		img.photo {
-			float: right;
-			max-width: 150px;
-		}
+        ul.profiles li.brightkite {
+            background-position: 0 -16px;
+        }
+        ul.profiles li.geocaching {
+            background-position: 0 -32px;
+        }
+        ul.profiles li.flickr {
+            background-position: 0 -48px;
+        }
+        ul.profiles li.lovefilm {
+            background-position: 0 -64px;
+        }
+        ul.profiles li.thetenwordreview {
+            background-position: 0 -80px;
+        }
+        ul.profiles li.slideshare {
+            background-position: 0 -96px;
+        }
+        ul.profiles li.twitter {
+            background-position: 0 -112px;
+        }
+        ul.profiles li.linkedin {
+            background-position: 0 -128px;
+        }
+        ul.profiles li.lastfm {
+            background-position: 0 -144px;
+        }
+        ul.profiles li.technorati {
+            background-position: 0 -160px;
+        }
+        ul.profiles li.mybloglog {
+            background-position: 0 -176px;
+        }
+        ul.profiles li.pixish {
+            background-position: 0 -192px;
+        }
+        ul.profiles li.wikipedia {
+            background-position: 0 -208px;
+        }
+        ul.profiles li.delicious {
+            background-position: 0 -224px;
+        }
+        ul.profiles li.facebook {
+            background-position: 0 -240px;
+        }
+        ul.profiles li.etsy {
+            background-position: 0 -256px;
+        }
+        ul.profiles li.threadless {
+            background-position: 0 -272px;
+        }
+        ul.profiles li.upcoming {
+            background-position: 0 -288px;
+        }
+        ul.profiles li.stumbleupon {
+            background-position: 0 -304px;
+        }
+        ul.profiles li.xbox {
+            background-position: 0 -320px;
+        }
+        ul.profiles li.pownce {
+            background-position: 0 -336px;
+        }
+        ul.profiles li.youtube {
+            background-position: 0 -352px;
+        }
+        ul.profiles li.digg {
+            background-position: 0 -368px;
+        }
+        ul.profiles li.amazon {
+            background-position: 0 -384px;
+        }
+        ul.profiles li.github {
+            background-position: 0 -400px;
+        }
+        ul.profiles li.calendaraboutnothing {
+            background-position: 0 -416px;
+        }
+        ul.profiles li.threesixtyvoice {
+            background-position: 0 -432px;
+        }
+        ul.profiles li.lighthouseapp {
+            background-position: 0 -448px;
+        }
+        
+        .mod {
+            overflow: hidden;
+        }
+        
+        img.photo {
+            float: right;
+            max-width: 150px;
+        }
     </style>
   </head>
   <body>
     <div id="doc3">
         <div id="hd">
-            <div class="yui-g">					
-				<?php
+            <div class="yui-g">                 
+                <?php
 
-			    $success = '';
-				if ( isset( $_GET['passcode'] ) ) {
-					echo '<div class="yui-u">';
-			      if ( hCardWithLevels::BAD_CODE == $hCard->getUserLevel( isset($_GET['passcode']) ? $_GET['passcode'] : null ) ) {
-			        echo "<p class='error'>
-			                Oh dear, the passcode you gave doesn't seem to be valid.
-			                Maybe it's gone past its 5 minute timeout, or maybe something
-			                went wrong whilst you were typing it in.  
-			                Why not try typing it again?
-			              </p>";
-			     } else {
-			       $server = $_SERVER['SERVER_NAME'];
-			       $port = isset($_SERVER['SERVER_PORT']) && 80 != $_SERVER['SERVER_PORT']
-			             ? ':'.$_SERVER['SERVER_PORT']
-			             : '';
-			       $page = $_SERVER['REQUEST_URI'];
-			       $url = urlencode("http://$server$port$page");
-			       $url = "http://$server$port$page&amp;vcf=1";
+                $success = '';
+                if ( isset( $_GET['passcode'] ) ) {
+                    echo '<div class="yui-u">';
+                  if ( hCardWithLevels::BAD_CODE == $hCard->getUserLevel( isset($_GET['passcode']) ? $_GET['passcode'] : null ) ) {
+                    echo "<p class='error'>
+                            Oh dear, the passcode you gave doesn't seem to be valid.
+                            Maybe it's gone past its 5 minute timeout, or maybe something
+                            went wrong whilst you were typing it in.  
+                            Why not try typing it again?
+                          </p>";
+                 } else {
+                   $server = $_SERVER['SERVER_NAME'];
+                   $port = isset($_SERVER['SERVER_PORT']) && 80 != $_SERVER['SERVER_PORT']
+                         ? ':'.$_SERVER['SERVER_PORT']
+                         : '';
+                   $page = $_SERVER['REQUEST_URI'];
+                   $url = urlencode("http://$server$port$page");
+                   $url = "http://$server$port$page&amp;vcf=1";
 
-					$success = "<div class='yui-g'><p class='success'>
-				               This URL will only remain viable for 5 minutes.  After that, 
-				               it will revert back to displaying the publically available
-				               hCard information.  Still, that's plenty enough time for you
-				               to click on the 
-				               <a href='$url'>turn this into a vCard</a>
-				               link.
-				             </p></div>";
-			       
-					echo "<p class='cta'>
-			                <a href='$url'>Download as VCF</a>
-			             </p>";
-			      }
-					echo "</div>";
-			    }
+                    $success = "<div class='yui-g'><p class='success'>
+                               This URL will only remain viable for 5 minutes.  After that, 
+                               it will revert back to displaying the publically available
+                               hCard information.  Still, that's plenty enough time for you
+                               to click on the 
+                               <a href='$url'>turn this into a vCard</a>
+                               link.
+                             </p></div>";
+                   
+                    echo "<p class='cta'>
+                            <a href='$url'>Download as VCF</a>
+                         </p>";
+                  }
+                    echo "</div>";
+                }
 
-			    ?>
-			    <div class="yui-u first">
-					<p>For more information, and to be able to download the VCF file, enter a passcode.</p>
-				    <form method='post' action=''>
-				      <p>
-				        <label for='passcode'>Passcode</label>
-				        <input type='password' name='passcode' id='passcode'>
-				      </p>
-				      <p>
-				        <input type='submit' value='Show me more?'>
-				      </p>
-				    </form>
-				</div>
-			</div>
-			<?php echo $success; ?>
+                ?>
+                <div class="yui-u first">
+                    <p>For more information, and to be able to download the VCF file, enter a passcode.</p>
+                    <form method='post' action=''>
+                      <p>
+                        <label for='passcode'>Passcode</label>
+                        <input type='password' name='passcode' id='passcode'>
+                      </p>
+                      <p>
+                        <input type='submit' value='Show me more?'>
+                      </p>
+                    </form>
+                </div>
+            </div>
+            <?php echo $success; ?>
         </div>
         <div id="bd">
             <div id="yui-main">
                 <div class="yui-b">
-      				<?php echo $hCard->toString( isset($_GET['passcode']) ? $_GET['passcode'] : null ); ?>
-				</div>
-			</div>
-    	</div>
-	</div>
+                    <?php echo $hCard->toString( isset($_GET['passcode']) ? $_GET['passcode'] : null ); ?>
+                </div>
+            </div>
+        </div>
+    </div>
   </body>
 </html>

@@ -17,21 +17,21 @@ class VCard {
     );
     private $aVCard = array();
     public $aFilters = array(
-		'boilerplate' => array(
-			'BEGIN:VCARD',
-			'VERSION:3.0',
-			'END:VCARD'
-		),
-		'everyone' => array(
-			'N:',
-			'FN:',
-			'ORG',
-			'ADR;type=WORK',
-			'NOTE',
-			'URL:',
-			'URL;',
-			'PHOTO;BASE64',
-		),
+        'boilerplate' => array(
+            'BEGIN:VCARD',
+            'VERSION:3.0',
+            'END:VCARD'
+        ),
+        'everyone' => array(
+            'N:',
+            'FN:',
+            'ORG',
+            'ADR;type=WORK',
+            'NOTE',
+            'URL:',
+            'URL;',
+            'PHOTO;BASE64',
+        ),
         'acquaintance' => array(
             'X-JABBER;type=HOME',
             'EMAIL;type=INTERNET;type=HOME',
@@ -49,57 +49,57 @@ class VCard {
             'EMAIL;type=INTERNET;type=WORK',
             'TEL;type=HOME',
             'ADR;type=HOME',
-			'TEL:',
-			'TEL;type=WORK',
+            'TEL:',
+            'TEL;type=WORK',
         ),
     );
-	private $aKnownProfileSites = array(
-		'flickr' => 'flickr.com',
-		'delicious' => 'delicious.com',
-		'facebook' => 'facebook.com',
-		'twitter' => 'twitter.com',
-		'linkedin' => 'linkedin.com',
-		'lovefilm' => 'lovefilm.com',
-		'slideshare' => 'slideshare.net',
-		'wikipedia' => 'en.wikipedia.org',
-		'thetenwordreview' => 'thetenwordreview.com',
-		'pixish' => 'pixish.com',
-		'brightkite' => 'brightkite.com',
-		'technorati' => 'technorati.com',
-		'mybloglog' => 'mybloglog.com',
-		'lastfm' => 'last.fm',
-		'upcoming' => 'upcoming.yahoo.com',
-		'geocaching' => 'geocaching.com',
-		'etsy' => 'etsy.com',
-		'threadless' => 'threadless.com',
-		'stumbleupon' => 'stumbleupon.com',
-		'xbox' => 'xbox.com',
-		'pownce' => 'pownce.com',
-		'youtube' => 'youtube.com',
-		'digg' => 'digg.com',
-		'amazon' => 'amazon.co.uk',
-		'github' => 'github.com',
-		'calendaraboutnothing' => 'calendaraboutnothing.com',
-		'threesixtyvoice' => '360voice.com',
-		'lighthouseapp' => 'lighthouseapp.com',
-	);
+    private $aKnownProfileSites = array(
+        'flickr' => 'flickr.com',
+        'delicious' => 'delicious.com',
+        'facebook' => 'facebook.com',
+        'twitter' => 'twitter.com',
+        'linkedin' => 'linkedin.com',
+        'lovefilm' => 'lovefilm.com',
+        'slideshare' => 'slideshare.net',
+        'wikipedia' => 'en.wikipedia.org',
+        'thetenwordreview' => 'thetenwordreview.com',
+        'pixish' => 'pixish.com',
+        'brightkite' => 'brightkite.com',
+        'technorati' => 'technorati.com',
+        'mybloglog' => 'mybloglog.com',
+        'lastfm' => 'last.fm',
+        'upcoming' => 'upcoming.yahoo.com',
+        'geocaching' => 'geocaching.com',
+        'etsy' => 'etsy.com',
+        'threadless' => 'threadless.com',
+        'stumbleupon' => 'stumbleupon.com',
+        'xbox' => 'xbox.com',
+        'pownce' => 'pownce.com',
+        'youtube' => 'youtube.com',
+        'digg' => 'digg.com',
+        'amazon' => 'amazon.co.uk',
+        'github' => 'github.com',
+        'calendaraboutnothing' => 'calendaraboutnothing.com',
+        'threesixtyvoice' => '360voice.com',
+        'lighthouseapp' => 'lighthouseapp.com',
+    );
     private $sFilename = '';
 
     public function __construct( $filename=null ) {
         if ( !$filename || !file_exists($filename) ) {
             //echo "filename does not exist - $filename";
-			throw new Exception('No file given, or file does not exist.');
-			return false;
+            throw new Exception('No file given, or file does not exist.');
+            return false;
         }
         $this->sFilename = $filename;
-		return true;
+        return true;
     }
     
     public function setLevel( $level=self::LEVEL_ALL) {
-		if ( !is_numeric($level) ) {
-			return false;
-		}
-		
+        if ( !is_numeric($level) ) {
+            return false;
+        }
+        
         if ( in_array( $level, $this->aLevels ) ) {
             $this->iLevel = $level;
             return true;
@@ -189,10 +189,10 @@ class VCard {
     
     public function toVCard() {
         if (self::LEVEL_FRIEND == $this->iLevel ) {
-			return file_get_contents($this->sFilename);
-		}
+            return file_get_contents($this->sFilename);
+        }
 
-		$aVCard = $this->loadVCardAsArray();
+        $aVCard = $this->loadVCardAsArray();
         $aReducedVCard = $this->reduceVCard($aVCard);
         return "BEGIN:VCARD\nVERSION:3.0\n".implode("", $aReducedVCard)."\nEND:VCARD\n";
     }
@@ -202,19 +202,19 @@ class VCard {
         $aReducedVCard = $this->reduceVCard($aVCard);
         
         $html = '';
-		$htmlProfile = '';
-		$htmlProfileUnknown = '';
-		$htmlSites = '';
-		$htmlName = '';
-		$htmlBasic = '';
-		$htmlAbout = '';
-		$htmlImage = '';
+        $htmlProfile = '';
+        $htmlProfileUnknown = '';
+        $htmlSites = '';
+        $htmlName = '';
+        $htmlBasic = '';
+        $htmlAbout = '';
+        $htmlImage = '';
         
         foreach ( $aReducedVCard as $line ) {
             
             $isBasic = false;
 
-			if ( false !== strpos( $line, 'X-ABLabel' ) ) {
+            if ( false !== strpos( $line, 'X-ABLabel' ) ) {
                 continue;
             }
             
@@ -230,22 +230,22 @@ class VCard {
                 continue;
             }
 
-			if (false === strpos( $line, ':' )) {
-				continue;
-			}
+            if (false === strpos( $line, ':' )) {
+                continue;
+            }
             
             $colonPos = strpos( $line, ':' );
             $key = substr( $line, 0, $colonPos );
             $value = substr( $line, $colonPos + 1 );
             
-			$value = str_replace('\n', "\n", $value);
-			$value = stripslashes($value);
+            $value = str_replace('\n', "\n", $value);
+            $value = stripslashes($value);
 
             $outKey = $key;
             $outValue = $value;
             
             $extraInfo = '';
-			if ( $item = $this->getSpecialItemInfo($line) ) {
+            if ( $item = $this->getSpecialItemInfo($line) ) {
                 foreach ( $aReducedVCard as $tempLine ) {
                     if ( $tempLine != $line && 0 === strpos( $tempLine, $item."X-ABLabel:" ) ) {
                         $extraInfo = ucwords(trim(substr( $tempLine, strlen($item."X-ABLabel:") )));
@@ -255,69 +255,69 @@ class VCard {
 
             if ( false !== strpos( $key, 'NOTE' ) ) {
                 $htmlAbout = $this->getMarkdown($value);
-				continue;
+                continue;
             } else if ( false !== strpos( $key, 'URL' ) ) {
                 if ( 'Profile' == trim($extraInfo) || 'Backnetwork' == trim($extraInfo) ) {
-					$site = $this->getProfileSite($value);
-					if ($site) {
-						$htmlProfile .= "<li class=\"known $site\">".HCard::getLink($value).'</li>';
-					} else {
-						$htmlProfileUnknown .= "<li>".HCard::getLink($value).'</li>';
-					}
-					continue;
-				} else {
-					$extra = ($extraInfo) ? " ($extraInfo)" : '';
-					$site = $this->getProfileSite($value);
-					if ($site) {
-						$htmlSites .= "<li class=\"known $site\">".HCard::getLink($value).$extra.'</li>';
-					} else {
-						$htmlSites .= "<li>".HCard::getLink($value).$extra.'</li>';
-					}
-					continue;
-//					$outValue = HCard::getLink($value);
-//                	$outKey = 'URL';
-				}
+                    $site = $this->getProfileSite($value);
+                    if ($site) {
+                        $htmlProfile .= "<li class=\"known $site\">".HCard::getLink($value).'</li>';
+                    } else {
+                        $htmlProfileUnknown .= "<li>".HCard::getLink($value).'</li>';
+                    }
+                    continue;
+                } else {
+                    $extra = ($extraInfo) ? " ($extraInfo)" : '';
+                    $site = $this->getProfileSite($value);
+                    if ($site) {
+                        $htmlSites .= "<li class=\"known $site\">".HCard::getLink($value).$extra.'</li>';
+                    } else {
+                        $htmlSites .= "<li>".HCard::getLink($value).$extra.'</li>';
+                    }
+                    continue;
+//                  $outValue = HCard::getLink($value);
+//                  $outKey = 'URL';
+                }
             } elseif ( false !== strpos( $key, 'EMAIL' ) ) {
                 $outValue = HCard::getEmail($value);
                 $outKey = 'E-Mail';
-				$isBasic = true;
+                $isBasic = true;
             } elseif ( false !== strpos( $key, 'ORG' ) ) {
                 $outValue = HCard::getOrganisation($value);
                 $outKey = 'Organisation';
-				$isBasic = true;
+                $isBasic = true;
             } elseif ( false !== strpos( $key, 'ADR;' ) || false !== strpos( $key, 'ADR:' ) ) {
                 $outValue = HCard::getAddress($value, $key);
                 $outKey = 'Address';
-				$isBasic = true;
+                $isBasic = true;
             } elseif ( false !== strpos( $key, 'TEL;' ) || false !== strpos( $key, 'TEL:' ) ) {
                 $outValue = HCard::getTelephone($value);
                 $outKey = 'Telephone';
-				$isBasic = true;
+                $isBasic = true;
             } elseif ( 0 === strpos( $key, 'FN' ) ) {
                 $htmlName = HCard::getFN($value);
-				continue;
+                continue;
             } elseif ( false !== strpos( $key, 'BDAY' ) ) {
                 $outValue = HCard::getBDay($value);
                 $outKey = 'Birthday';
             } elseif ( false !== strpos( $key, 'X-AIM' ) ) {
                 $outValue = HCard::getAIM($value);
                 $outKey = "<acronym title='AOL Instant Messenger'>AIM</acronym>";
-				$isBasic = true;
+                $isBasic = true;
             } elseif ( false !== strpos( $key, 'X-YAHOO' ) ) {
                 $outValue = HCard::getYahooMessenger($value);
                 $outKey = "Yahoo! Messenger";
-				$isBasic = true;
+                $isBasic = true;
             } elseif ( false !== strpos( $key, 'X-JABBER' ) ) {
                 $outValue = HCard::getJabber($value);
                 $outKey = "Jabber";
-				$isBasic = true;
+                $isBasic = true;
             } elseif ( false !== strpos( $key, 'X-ABRELATEDNAMES' ) ) {
                 $outValue = $value;
                 $outKey = "";
             } elseif ( false !== strpos( $key, 'PHOTO' ) ) {
                 $image = $this->getImageBase64String($aReducedVCard);
-				$htmlImage = "<img src='data:image/png;base64,$image' alt='' class='photo'>";
-				continue;
+                $htmlImage = "<img src='data:image/png;base64,$image' alt='' class='photo'>";
+                continue;
             }
             
             if ( false !== strpos( $key, 'type=HOME' ) ) {
@@ -329,140 +329,140 @@ class VCard {
             }
             
             if ($extraInfo) {
-				if (isset($outkey) && $outKey) {
-					$outkey .= ' - ';
-				}
-				$outKey .= $extraInfo;
-			}
+                if (isset($outkey) && $outKey) {
+                    $outkey .= ' - ';
+                }
+                $outKey .= $extraInfo;
+            }
 
-			if ( false !== strpos( $key, 'type=pref' ) ) {
+            if ( false !== strpos( $key, 'type=pref' ) ) {
                 $outKey .= ' - Preferred';
             }
             
             if ( $isBasic ) {
-				$htmlBasic .= "<tr><th>$outKey</th><td>$outValue</td></tr>";
-			} else {
-				$html .= "<tr><th>$outKey</th><td>$outValue</td></tr>";
-			}
+                $htmlBasic .= "<tr><th>$outKey</th><td>$outValue</td></tr>";
+            } else {
+                $html .= "<tr><th>$outKey</th><td>$outValue</td></tr>";
+            }
         }
         
         
-		$modEverythingElse = '';
-		if ( $html ) {
-			$modEverythingElse = <<<HTML
-	<div class='mod'>
-		<h2 class='hd'>Everything Else</h2>
-		<table class='bd'>
-			<thead>
-				<tr>
-					<th>Key</th>
-					<th class="last">Value</th>
-				</tr>
-			</thead>
-			<tbody>
-				$html
-			</tbody>
-		</table>
-	</div>
+        $modEverythingElse = '';
+        if ( $html ) {
+            $modEverythingElse = <<<HTML
+    <div class='mod'>
+        <h2 class='hd'>Everything Else</h2>
+        <table class='bd'>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th class="last">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                $html
+            </tbody>
+        </table>
+    </div>
 HTML;
-		}
+        }
 
-		return <<<HTML
+        return <<<HTML
 <div class='vcard'>
-	<h1>$htmlName</h1>
-	<div class="yui-g">
-		<div class="yui-u first">
-			<div class='mod'>
-				<h2 class='hd'>Basic Info</h2>
-				$htmlImage
-				<table class='bd'>
-					<thead>
-						<tr>
-							<th>Key</th>
-							<th class="last">Value</th>
-						</tr>
-					</thead>
-					<tbody>
-						$htmlBasic
-					</tbody>
-				</table>
-			</div>
-			<div class="yui-b">
-				<div class='sites mod yui-u first'>
-					<h2 class='hd'>My sites</h2>
-					<ul class='bd'>$htmlSites</ul>
-				</div>
-				<div class='profiles mod yui-u'>
-					<h2 class='hd'>My profiles</h2>
-					<ul class='bd profiles'>$htmlProfile$htmlProfileUnknown</ul>
-				</div>
-			</div>
-		</div>
-		<div class="yui-u">
-			<div class='mod'>
-				<h2 class='hd'>About Me</h2>
-				<div class='bd'>$htmlAbout</div>
-			</div>
-			$modEverythingElse
-		</div>
-	</div>
+    <h1>$htmlName</h1>
+    <div class="yui-g">
+        <div class="yui-u first">
+            <div class='mod'>
+                <h2 class='hd'>Basic Info</h2>
+                $htmlImage
+                <table class='bd'>
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th class="last">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        $htmlBasic
+                    </tbody>
+                </table>
+            </div>
+            <div class="yui-b">
+                <div class='sites mod yui-u first'>
+                    <h2 class='hd'>My sites</h2>
+                    <ul class='bd'>$htmlSites</ul>
+                </div>
+                <div class='profiles mod yui-u'>
+                    <h2 class='hd'>My profiles</h2>
+                    <ul class='bd profiles'>$htmlProfile$htmlProfileUnknown</ul>
+                </div>
+            </div>
+        </div>
+        <div class="yui-u">
+            <div class='mod'>
+                <h2 class='hd'>About Me</h2>
+                <div class='bd'>$htmlAbout</div>
+            </div>
+            $modEverythingElse
+        </div>
+    </div>
 </div>
 HTML;
 
     }
     
 
-	private function getMarkdown($line) {
-		return Markdown($line);
-	}
-	
-	private function getProfileSite($url) {
-		if (!preg_match("/^(https?:\/\/)?(www\.)?([^\/]+)\//", $url, $matches)) {
-			return false;
-		}
-		
-		$domain = $matches[3];
-		if ( !in_array( $domain, $this->aKnownProfileSites ) ) {
-			return false;
-		}
-		
-		foreach ( $this->aKnownProfileSites as $key=>$value ) {
-			if ( $domain == $value ) {
-				return $key;
-			}
-		}
-		
-		return false;
-	}
-	
-	private function getImageBase64String($aReducedVCard) {
-		$imageString = '';
-		$startedImage = false;
-		$endedImage = false;
+    private function getMarkdown($line) {
+        return Markdown($line);
+    }
+    
+    private function getProfileSite($url) {
+        if (!preg_match("/^(https?:\/\/)?(www\.)?([^\/]+)\//", $url, $matches)) {
+            return false;
+        }
+        
+        $domain = $matches[3];
+        if ( !in_array( $domain, $this->aKnownProfileSites ) ) {
+            return false;
+        }
+        
+        foreach ( $this->aKnownProfileSites as $key=>$value ) {
+            if ( $domain == $value ) {
+                return $key;
+            }
+        }
+        
+        return false;
+    }
+    
+    private function getImageBase64String($aReducedVCard) {
+        $imageString = '';
+        $startedImage = false;
+        $endedImage = false;
 
-		foreach ($aReducedVCard as $line) {
-			if ( false !== strpos( $line, 'PHOTO' ) ) {
-				$startedImage = true;
-				continue;
-			}
-			
-			$pos = strpos( $line, '==' );
-			if ( false !== $pos ) {
-				$line = substr($line, 0, $pos);
-				$endedImage = true;
-			}
-			
-			if ($startedImage) {
-				$imageString .= trim($line);
-			}
-			
-			if ($endedImage) {
-				return $imageString;
-			}
-		}
-		
-		return $imageString;
-	}
+        foreach ($aReducedVCard as $line) {
+            if ( false !== strpos( $line, 'PHOTO' ) ) {
+                $startedImage = true;
+                continue;
+            }
+            
+            $pos = strpos( $line, '==' );
+            if ( false !== $pos ) {
+                $line = substr($line, 0, $pos);
+                $endedImage = true;
+            }
+            
+            if ($startedImage) {
+                $imageString .= trim($line);
+            }
+            
+            if ($endedImage) {
+                return $imageString;
+            }
+        }
+        
+        return $imageString;
+    }
 
 }
 

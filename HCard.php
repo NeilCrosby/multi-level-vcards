@@ -9,11 +9,11 @@ class HCard {
         }
 
         $linkText = trim($url);
-		if (preg_match("/^(https?:\/\/)?(www\.)?([^\/]+)\//", $url, $matches)) {
-			$linkText = $matches[3];
-		}
-		
-		return "<a href='$outUrl' rel='me' class='url'>$linkText</a>";
+        if (preg_match("/^(https?:\/\/)?(www\.)?([^\/]+)\//", $url, $matches)) {
+            $linkText = $matches[3];
+        }
+        
+        return "<a href='$outUrl' rel='me' class='url'>$linkText</a>";
     }
 
     public static function getEmail( $url ) {
