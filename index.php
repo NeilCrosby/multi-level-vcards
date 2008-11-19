@@ -69,6 +69,7 @@ $hCard = new hCardWithLevels(
             $vCard->setLevel($userLevel);
             
             header('Content-type: text/x-vcard');
+            header('Content-Disposition: attachment; filename="NeilCrosby.vcf"');
             echo $vCard->toVCard();
             exit;
         }
