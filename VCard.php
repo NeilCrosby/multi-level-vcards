@@ -73,7 +73,7 @@ class VCard {
         'etsy' => 'etsy.com',
         'threadless' => 'threadless.com',
         'stumbleupon' => 'stumbleupon.com',
-        'xbox' => 'xbox.com',
+        'xbox' => 'gamercard.xbox.com',
         'pownce' => 'pownce.com',
         'youtube' => 'youtube.com',
         'digg' => 'digg.com',
@@ -422,12 +422,9 @@ HTML;
         }
         
         $domain = $matches[3];
-        if ( !in_array( $domain, $this->aKnownProfileSites ) ) {
-            return false;
-        }
-        
+
         foreach ( $this->aKnownProfileSites as $key=>$value ) {
-            if ( $domain == $value ) {
+            if ( $domain == $value || ".$value" == mb_substr( $domain, -mb_strlen( $value ) - 1 ) ) {
                 return $key;
             }
         }
