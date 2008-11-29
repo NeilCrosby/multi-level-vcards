@@ -62,7 +62,7 @@ $hCard = new hCardWithLevels(
     )
 );
     
-if ( isset( $_GET['passcode'] ) && isset( $_GET['vcf'] ) ) {
+if ( isset( $_GET['vcf'] ) ) {
     if ( hCardWithLevels::BAD_CODE != $hCard->getUserLevel( isset($_GET['passcode']) ? $_GET['passcode'] : null ) ) {
         $userLevel = $hCard->getUserLevel($_GET['passcode']);
         $vCard = new VCard('vcard.vcf');
@@ -72,6 +72,35 @@ if ( isset( $_GET['passcode'] ) && isset( $_GET['vcf'] ) ) {
         header('Content-Disposition: attachment; filename="NeilCrosby.vcf"');
         echo $vCard->toVCard();
         exit;
+    }
+}
+
+$server = $_SERVER['SERVER_NAME'];
+$port = isset($_SERVER['SERVER_PORT']) && 80 != $_SERVER['SERVER_PORT']
+     ? ':'.$_SERVER['SERVER_PORT']
+     : '';
+$page = $_SERVER['REQUEST_URI'];
+$joiner = ('/' == $page) ? '?' : '&amp;';
+$url = "http://$server$port$page{$joiner}vcf=1";
+
+$success = '';
+if ( isset( $_GET['passcode'] ) ) {
+    if ( hCardWithLevels::BAD_CODE == $hCard->getUserLevel( isset($_GET['passcode']) ? $_GET['passcode'] : null ) ) {
+        $success = "<p class='error'>
+                Oh dear, the passcode you gave doesn't seem to be valid.
+                Maybe it's gone past its 5 minute timeout, or maybe something
+                went wrong whilst you were typing it in.  
+                Why not try typing it again?
+              </p>";
+    } else {
+        $success = "<p class='success'>
+                   This URL will only remain viable for 5 minutes.  After that, 
+                   it will revert back to displaying the publically available
+                   information.  Still, that's plenty enough time for you
+                   to click on the 
+                   <a href='$url'>Download as VCF</a>
+                   link.
+                 </p>";
     }
 }
 
@@ -290,44 +319,11 @@ if ( isset( $_GET['passcode'] ) && isset( $_GET['vcf'] ) ) {
     <div id="doc3">
         <div id="hd">
             <div class="yui-g">                 
-                <?php
-
-                $success = '';
-                if ( isset( $_GET['passcode'] ) ) {
-                    echo '<div class="yui-u">';
-                  if ( hCardWithLevels::BAD_CODE == $hCard->getUserLevel( isset($_GET['passcode']) ? $_GET['passcode'] : null ) ) {
-                    echo "<p class='error'>
-                            Oh dear, the passcode you gave doesn't seem to be valid.
-                            Maybe it's gone past its 5 minute timeout, or maybe something
-                            went wrong whilst you were typing it in.  
-                            Why not try typing it again?
-                          </p>";
-                 } else {
-                   $server = $_SERVER['SERVER_NAME'];
-                   $port = isset($_SERVER['SERVER_PORT']) && 80 != $_SERVER['SERVER_PORT']
-                         ? ':'.$_SERVER['SERVER_PORT']
-                         : '';
-                   $page = $_SERVER['REQUEST_URI'];
-                   $url = urlencode("http://$server$port$page");
-                   $url = "http://$server$port$page&amp;vcf=1";
-
-                    $success = "<div class='yui-g'><p class='success'>
-                               This URL will only remain viable for 5 minutes.  After that, 
-                               it will revert back to displaying the publically available
-                               hCard information.  Still, that's plenty enough time for you
-                               to click on the 
-                               <a href='$url'>turn this into a vCard</a>
-                               link.
-                             </p></div>";
-                   
-                    echo "<p class='cta'>
-                            <a href='$url'>Download as VCF</a>
-                         </p>";
-                  }
-                    echo "</div>";
-                }
-
-                ?>
+                <div class="yui-u">
+                    <p class='cta'>
+                        <a href='<?php echo $url; ?>'>Download as VCF</a>
+                    </p>
+                </div>
                 <div class="yui-u first">
                     <p>For more information, and to be able to download the VCF file, enter a passcode.</p>
                     <form method='post' action=''>
