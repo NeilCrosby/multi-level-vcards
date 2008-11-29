@@ -62,21 +62,20 @@ $hCard = new hCardWithLevels(
     )
 );
     
-    if ( isset( $_GET['passcode'] ) && isset( $_GET['vcf'] ) ) {
-        if ( hCardWithLevels::BAD_CODE != $hCard->getUserLevel( isset($_GET['passcode']) ? $_GET['passcode'] : null ) ) {
-            $userLevel = $hCard->getUserLevel($_GET['passcode']);
-            $vCard = new VCard('vcard.vcf');
-            $vCard->setLevel($userLevel);
-            
-            header('Content-type: text/x-vcard');
-            header('Content-Disposition: attachment; filename="NeilCrosby.vcf"');
-            echo $vCard->toVCard();
-            exit;
-        }
+if ( isset( $_GET['passcode'] ) && isset( $_GET['vcf'] ) ) {
+    if ( hCardWithLevels::BAD_CODE != $hCard->getUserLevel( isset($_GET['passcode']) ? $_GET['passcode'] : null ) ) {
+        $userLevel = $hCard->getUserLevel($_GET['passcode']);
+        $vCard = new VCard('vcard.vcf');
+        $vCard->setLevel($userLevel);
+        
+        header('Content-type: text/x-vcard');
+        header('Content-Disposition: attachment; filename="NeilCrosby.vcf"');
+        echo $vCard->toVCard();
+        exit;
     }
-    
-    ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+}
+
+?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
