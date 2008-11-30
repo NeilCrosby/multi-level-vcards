@@ -80,7 +80,7 @@ $port = isset($_SERVER['SERVER_PORT']) && 80 != $_SERVER['SERVER_PORT']
      ? ':'.$_SERVER['SERVER_PORT']
      : '';
 $page = $_SERVER['REQUEST_URI'];
-$joiner = ('/' == $page) ? '?' : '&amp;';
+$joiner = ('/' == substr($page, -1)) ? '?' : '&amp;';
 $url = "http://$server$port$page{$joiner}vcf=1";
 
 $success = '';
