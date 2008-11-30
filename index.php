@@ -325,7 +325,7 @@ if ( isset( $_GET['passcode'] ) ) {
                     </p>
                 </div>
                 <div class="yui-u first">
-                    <p>For more information, and to be able to download the VCF file, enter a passcode.</p>
+                    <p>For more information about me, and to be able to download a better VCF file, enter a passcode.</p>
                     <form method='post' action=''>
                       <p>
                         <label for='passcode'>Passcode</label>
