@@ -108,6 +108,7 @@ if ( isset( $_GET['passcode'] ) ) {
   "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Neil Crosby's vCard</title>
     <link rel="stylesheet" type="text/css" href="reset-fonts-grids-min.css">
     <style type='text/css'>

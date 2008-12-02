@@ -88,7 +88,7 @@ class HCard {
             }
         }
 */        
-        return "<div class='adr$keyClass'><p>$output</p></dov>";
+        return "<div class='adr$keyClass'><p>$output</p></div>";
     }
 
     public static function getTelephone( $line ) {
