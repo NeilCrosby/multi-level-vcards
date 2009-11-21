@@ -81,7 +81,21 @@ $port = isset($_SERVER['SERVER_PORT']) && 80 != $_SERVER['SERVER_PORT']
      : '';
 $page = $_SERVER['REQUEST_URI'];
 $joiner = ('/' == substr($page, -1)) ? '?' : '&amp;';
-$url = "http://$server$port$page{$joiner}vcf=1";
+
+// if we're on the iPhone go to the email page
+if (false !== strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone')) {
+    if ('/' == substr($page, -1)) {
+        $newPage = $page . 'via-email/';
+    } else {
+        $bits = explode('/', $page);
+        $queryString = array_pop($bits);
+        $newPage = implode('/', $bits).'/via-email/'.$queryString;
+    }
+    $url = "http://$server$port$newPage";
+// otherwise go to the normal download page
+} else {
+    $url = "http://$server$port$page{$joiner}vcf=1";
+}
 
 $success = '';
 if ( isset( $_GET['passcode'] ) ) {
