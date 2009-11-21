@@ -31,6 +31,7 @@ class VCard {
             'URL:',
             'URL;',
             'PHOTO;BASE64',
+            'X-ABLabel:public',
         ),
         'acquaintance' => array(
             'X-JABBER;type=HOME',
@@ -326,6 +327,8 @@ class VCard {
                 $outKey .= ' - Work';
             } elseif( false !== strpos( $key, 'type=CELL' ) ) {
                 $outKey .= ' - Mobile';
+            } elseif( 'Public' === $extraInfo ) {
+                $outKey .= ' - ';
             }
             
             if ($extraInfo) {
@@ -369,12 +372,11 @@ HTML;
 
         return <<<HTML
 <div class='vcard'>
-    <h1>$htmlName</h1>
+    <object class="include" data="#neilcrosby"></object>
     <div class="yui-g">
         <div class="yui-u first">
             <div class='mod'>
                 <h2 class='hd'>Basic Info</h2>
-                $htmlImage
                 <table class='bd'>
                     <thead>
                         <tr>
@@ -401,7 +403,10 @@ HTML;
         <div class="yui-u">
             <div class='mod'>
                 <h2 class='hd'>About Me</h2>
-                <div class='bd'>$htmlAbout</div>
+                <div class='bd'>
+                    $htmlImage
+                    $htmlAbout
+                </div>
             </div>
             $modEverythingElse
         </div>

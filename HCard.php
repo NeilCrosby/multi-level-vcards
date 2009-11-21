@@ -3,15 +3,25 @@
 class HCard {
 
     public static function getLink( $url ) {
-        $outUrl = trim($url);
+        $url = trim($url);
+        
+        $outUrl = $url;
         if ( false === strpos( $outUrl, '://' ) ) {
             $outUrl = 'http://'.$outUrl;
         }
 
-        $linkText = trim($url);
+        $linkText = $url;
         if (preg_match("/^(https?:\/\/)?(www\.)?([^\/]+)\//", $url, $matches)) {
             $linkText = $matches[3];
         }
+        
+#        $username = '';
+#        if (preg_match("/([-.a-zA-Z0-9_]+)\/?$/", $url, $matches)) {
+#            $username = $matches[1];
+#            if ( $username === $linkText ) {
+#                $username = '';
+#            }
+#        }        
         
         return "<a href='$outUrl' rel='me' class='url'>$linkText</a>";
     }

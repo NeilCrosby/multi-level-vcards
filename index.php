@@ -86,21 +86,16 @@ $url = "http://$server$port$page{$joiner}vcf=1";
 $success = '';
 if ( isset( $_GET['passcode'] ) ) {
     if ( hCardWithLevels::BAD_CODE == $hCard->getUserLevel( isset($_GET['passcode']) ? $_GET['passcode'] : null ) ) {
-        $success = "<p class='error'>
+        $success = "<div class='ft'><p class='error'>
                 Oh dear, the passcode you gave doesn't seem to be valid.
-                Maybe it's gone past its 5 minute timeout, or maybe something
-                went wrong whilst you were typing it in.  
                 Why not try typing it again?
-              </p>";
+              </p></div>";
     } else {
-        $success = "<p class='success'>
+        $success = "<div class='ft'><p class='success'>
                    This URL will only remain viable for 5 minutes.  After that, 
-                   it will revert back to displaying the publically available
-                   information.  Still, that's plenty enough time for you
-                   to click on the 
-                   <a href='$url'>Download as VCF</a>
-                   link.
-                 </p>";
+                   it will revert back to displaying the publicly available
+                   information.
+                 </p></div>";
     }
 }
 
@@ -110,17 +105,34 @@ if ( isset( $_GET['passcode'] ) ) {
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Neil Crosby's vCard</title>
-    <link rel="stylesheet" type="text/css" href="reset-fonts-grids-min.css">
+    
+    <link type="text/css" rel="stylesheet" href="http://hire.neilcrosby.com/css/style.css">
+    
     <style type='text/css'>
-        h1 {
-            font-size: 2em;
-            font-weight: bold;
-        }
 
+    html {
+        font-family: Arial, sans-serif;
+        background: #101010;
+        color: #cfcfcf;
+    }
+
+    a {
+        color: #dd621f;
+    }
+
+    h1 {
+        font-size: 500%;
+        font-weight: bold;
+        font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+        letter-spacing: -0.02em;
+        position: relative;
+    }
         h2 {
             font-size: 1.5em;
             font-weight: bold;
             margin: 0.83em 0;
+            border-top: none;
+            border-bottom: 1px solid #CFCFCF;
         }
         
         p {
@@ -144,6 +156,7 @@ if ( isset( $_GET['passcode'] ) ) {
             width: 30em;
         }
         
+/*
         .cta {
             text-align: center;
         }
@@ -164,7 +177,7 @@ if ( isset( $_GET['passcode'] ) ) {
         .cta a:hover {
             background: #aa0000;
         }
-
+*/
         table td {
             padding: 1px;
             vertical-align: top;
@@ -177,7 +190,7 @@ if ( isset( $_GET['passcode'] ) ) {
         table th {
             text-align: right;
             font-weight: bold;
-            padding: 1px;
+            padding: 1px 3px 1px 1px;
             vertical-align: top;
         }
 
@@ -189,9 +202,13 @@ if ( isset( $_GET['passcode'] ) ) {
             margin: 0;
         }
         
+/*
         #hd {
-            background: #eee;
             padding: 0.5em;
+        }
+*/        
+        li {
+            margin: 0.25em 0;
         }
 
         ul.profiles {
@@ -201,25 +218,26 @@ if ( isset( $_GET['passcode'] ) ) {
         ul.profiles li {
             list-style-type: disc;
             clear: both;
-            padding: 0;
+            padding: 0 0 0 20px;
+            margin: 0.25em 0;
         }
 
         ul.profiles li.known {
-            background: url(favicons.png);
-            width: 16px;
+            background: url(favicons.png) no-repeat;
+            /*width: 16px;*/
             height: 16px;
-            text-indent: -9999em;
+            /*text-indent: -9999em;*/
             list-style-type: none;
-            float: left;
+            /*float: left;
             clear:none;
-            margin: 0.25em;
+            margin: 0.25em;*/
         }
 
-        ul.profiles li.known a {
+/*        ul.profiles li.known a {
             display: block;
             width: 16px;
             height: 16px;
-        }
+        }*/
 
         ul.profiles li.brightkite {
             background-position: 0 -16px;
@@ -314,22 +332,63 @@ if ( isset( $_GET['passcode'] ) ) {
             float: right;
             max-width: 150px;
         }
+        
+        #hd #more-info {
+            border-top: 1px solid white;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #hd #more-info .bd,
+        #hd #more-info .ft {
+            margin: 0.5em auto;
+            width:57.69em;
+        }
+
+        #hd #more-info .bd * {
+            display: inline;
+        }
+
+        #hd #more-info .ft p {
+            font-size: 100%;
+        }
+        
+        object {
+            visibility: hidden;
+            margin: 0;
+            padding: 0;
+            font-size: 1px;
+            height: 0;
+        }
+        
+        #hd .mod .bd .email {
+            top: 3.4em;
+        }
+
     </style>
   </head>
   <body>
-    <div id="doc3">
+    <div id="doc">
         <div id="hd">
-            <div class="yui-g">                 
-                <div class="yui-u">
-                    <p class='cta'>
-                        <a href='<?php echo $url; ?>'>Download as VCF</a>
-                    </p>
+            <div class="mod">
+                <h1 class="hd">
+                    <a href="http://neilcrosby.com/" class="url" rel="me">
+                        <span class="fn" id="neilcrosby">Neil Crosby</span>
+                    </a>
+                </h1>
+                <div class="bd">
+                    <span>Web developer, problem solver, tinkerer, sharer.</span>
+                    <span class="email">hire@neilcrosby.com</span>
                 </div>
-                <div class="yui-u first">
-                    <p>For more information about me, and to be able to download a better VCF file, enter a passcode.</p>
+            </div>
+            <div class="mod" id="more-info">
+                <div class="bd">
+                    <a href='<?php echo $url; ?>'>Download as VCF</a>
+                    or for more information about me enter a
                     <form method='post' action=''>
                       <p>
-                        <label for='passcode'>Passcode</label>
+                        <label for='passcode'>passcode</label>
                         <input type='password' name='passcode' id='passcode'>
                       </p>
                       <p>
@@ -337,8 +396,8 @@ if ( isset( $_GET['passcode'] ) ) {
                       </p>
                     </form>
                 </div>
+                <?php echo $success; ?>
             </div>
-            <?php echo $success; ?>
         </div>
         <div id="bd">
             <div id="yui-main">
