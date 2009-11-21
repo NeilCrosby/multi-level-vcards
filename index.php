@@ -116,6 +116,17 @@ if ( isset( $_GET['passcode'] ) ) {
         color: #cfcfcf;
     }
 
+    #doc2 {
+        width: 100%;
+    }
+
+    #hd .mod,
+    #bd,
+    #ft {
+        width: 73.076em;
+        margin: 0 auto;
+    }
+
     a {
         color: #dd621f;
     }
@@ -334,16 +345,16 @@ if ( isset( $_GET['passcode'] ) ) {
         }
         
         #hd #more-info {
-            border-top: 1px solid white;
+            border-top: 2px solid white;
             width: 100%;
-            margin: 0;
+            margin: 0.5em 0 0 0;
             padding: 0;
         }
         
         #hd #more-info .bd,
         #hd #more-info .ft {
             margin: 0.5em auto;
-            width:57.69em;
+            width:73.076em;
         }
 
         #hd #more-info .bd * {
@@ -369,7 +380,7 @@ if ( isset( $_GET['passcode'] ) ) {
     </style>
   </head>
   <body>
-    <div id="doc">
+    <div id="doc2">
         <div id="hd">
             <div class="mod">
                 <h1 class="hd">
