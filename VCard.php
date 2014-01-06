@@ -19,8 +19,11 @@ class VCard {
     public $aFilters = array(
         'boilerplate' => array(
             'BEGIN:VCARD',
-            'VERSION:3.0',
-            'END:VCARD'
+            'VERSION',
+            'END:VCARD',
+            'X-ABUID',
+            'PRODID',
+            'UID',
         ),
         'everyone' => array(
             'N:',
@@ -36,11 +39,13 @@ class VCard {
         'acquaintance' => array(
             'X-JABBER;type=HOME',
             'EMAIL;type=INTERNET;type=HOME',
+            'BDAY:',
             'BDAY;',
             'X-YAHOO;type=HOME',
             'X-YAHOO-ID;type=HOME',
             'X-AIM;type=HOME;',
             'X-JABBER;type=HOME;',
+            'IMPP;X-SERVICE-TYPE=Jabber;type=HOME:',
             'TEL;type=CELL',
         ),
         'friend' => array(
@@ -52,6 +57,14 @@ class VCard {
             'ADR;type=HOME',
             'TEL:',
             'TEL;type=WORK',
+        ),
+        'ignore' => array(
+            'IMPP;X-SERVICE-TYPE=AIM;type=HOME;type=pref:aim:',
+            'IMPP;X-SERVICE-TYPE=Jabber;type=HOME:xmpp:',
+            'IMPP;X-SERVICE-TYPE=Yahoo;type=HOME:ymsgr:',
+            'IMPP;X-SERVICE-TYPE=Yahoo;type=WORK:ymsgr:',
+            'IMPP;X-SERVICE-TYPE=Yahoo;type=HOME:ymsgr:',
+            'X-ABRELATEDNAMES',
         ),
     );
     private $aKnownProfileSites = array(
@@ -135,23 +148,16 @@ class VCard {
         $aExtraThingsToFilter = array();
         
         foreach ( $aVCard as $line ) {
-            // first get rid of the boilerplate swtuff
-            if ( 0 === strpos( $line, 'BEGIN:VCARD' ) ) {
+            // first get rid of the boilerplate stuff
+            if ($this->isLineToBeFiltered( $line, 'boilerplate' )) {
                 continue;
             }
 
-            if ( 0 === strpos( $line, 'VERSION' ) ) {
+            // and anything else to always be ignored
+            if ($this->isLineToBeFiltered( $line, 'ignore' )) {
                 continue;
             }
 
-            if ( 0 === strpos( $line, 'END:VCARD' ) ) {
-                continue;
-            }
-            
-            if ( 0 === strpos( $line, 'X-ABUID' ) ) {
-                continue;
-            }
-            
             // now get rid of friend stuff if the level is lower than friend
             if ( $this->iLevel < self::LEVEL_FRIEND ) {
                 if ($this->isLineToBeFiltered( $line, 'friend' )) {
@@ -317,7 +323,7 @@ class VCard {
                 $outKey = "";
             } elseif ( false !== strpos( $key, 'PHOTO' ) ) {
                 $image = $this->getImageBase64String($aReducedVCard);
-                $htmlImage = "<img src='data:image/png;base64,$image' alt='' class='photo'>";
+                $htmlImage = "<img src='$image' alt='' class='photo'>";
                 continue;
             }
             
@@ -445,16 +451,41 @@ HTML;
         foreach ($aReducedVCard as $line) {
             if ( false !== strpos( $line, 'PHOTO' ) ) {
                 $startedImage = true;
+
+                $pos = strpos( $line, 'TYPE=JPEG' );
+                if ( false !== $pos ) {
+                    $imageString .= 'data:image/jpeg;base64,';
+                } else {
+                    $imageString .= 'data:image/png;base64,';
+                }
+
+                $pos = strpos( $line, ':' );
+                if ( false !== $pos ) {
+                    $line = trim(substr($line, $pos + 1));
+                    $imageString .= $line;
+                }
+
                 continue;
             }
             
+            // == is the old image ending
             $pos = strpos( $line, '==' );
             if ( false !== $pos ) {
                 $line = substr($line, 0, $pos);
                 $endedImage = true;
+                $imageString .= trim($line);
             }
-            
-            if ($startedImage) {
+
+
+            // nowadays we also have to look to see whether
+            // we've just managed to move onto the next item
+            $pos = strpos( $line, ':' );
+            if ( false !== $pos && $startedImage) {
+                $endedImage = true;
+            }
+
+
+            if ($startedImage && !$endedImage) {
                 $imageString .= trim($line);
             }
             
